@@ -23,4 +23,8 @@ def post_details(request, pk):
     # Question 2
     # You should create a new file in the templates directory.
     # REPLACE THE LINE WITH YOUR CODE
-    return HttpResponse("No post details page :(")
+    try:
+        post = Post.objects.get(id=pk)
+        return render(request, "posts/post_details.html", {"post": post})
+    except:
+        return HttpResponse("No post with given pk")
